@@ -1,0 +1,60 @@
+{
+    "type": "object",
+    "properties": {
+        "keyword": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents a lease object for a given keyword",
+            "properties": {
+                "autoRenew": {
+                    "description": "Enables the auto renewal of a keyword lease at the end of each billing cycle",
+                    "type": "boolean"
+                },
+                "contactListId": {
+                    "description": "Existing contact list ID",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "doubleOptInEnabled": {
+                    "description": "Enable/disable double opt in feature",
+                    "type": "boolean"
+                },
+                "keyword": {
+                    "description": "A text used as a keyword",
+                    "type": "string"
+                },
+                "leaseBegin": {
+                    "description": "A time of a lease timestamp, formatted in unix time milliseconds (read only). Example: 1473781817000 for Sat, 05 Jan 1985 14:03:37 GMT",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "leaseEnd": {
+                    "description": "A date and time when the keyword lease is finishes. Timestamp, formatted in unix time milliseconds (read only). Example: 1473781817000",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "optInConfirmationMessage": {
+                    "description": "Opt in confirmation message",
+                    "type": "string"
+                },
+                "shortCode": {
+                    "description": "A short code assigned to keyword. Example: 67076",
+                    "type": "string"
+                },
+                "status": {
+                    "description": "A lease status. Available values: PENDING, ACTIVE, RELEASED, UNAVAILABLE",
+                    "enum": [
+                        "PENDING",
+                        "ACTIVE",
+                        "RELEASED",
+                        "UNAVAILABLE"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "callerid": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Request which is used to verify a new caller id number",
+            "properties": {
+                "verificationCode": {
+                    "description": "The code used to verify a caller id number",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

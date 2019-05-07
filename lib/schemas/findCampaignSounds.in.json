@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 100
+        },
+        "offset": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+        },
+        "filter": {
+            "required": false,
+            "type": "string"
+        },
+        "includeArchived": {
+            "required": false,
+            "type": "boolean"
+        },
+        "includePending": {
+            "required": false,
+            "type": "boolean"
+        },
+        "includeScrubbed": {
+            "required": false,
+            "type": "boolean"
+        },
+        "fields": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

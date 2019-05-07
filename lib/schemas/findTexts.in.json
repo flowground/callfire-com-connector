@@ -1,0 +1,73 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 100
+        },
+        "offset": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+        },
+        "id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int64",
+                "type": "integer"
+            }
+        },
+        "campaignId": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "batchId": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "fromNumber": {
+            "required": false,
+            "type": "string"
+        },
+        "toNumber": {
+            "required": false,
+            "type": "string"
+        },
+        "label": {
+            "required": false,
+            "type": "string"
+        },
+        "states": {
+            "required": false,
+            "type": "string"
+        },
+        "results": {
+            "required": false,
+            "type": "string"
+        },
+        "inbound": {
+            "required": false,
+            "type": "boolean"
+        },
+        "intervalBegin": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "intervalEnd": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        }
+    }
+}

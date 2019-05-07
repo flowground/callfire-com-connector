@@ -1,0 +1,37 @@
+{
+    "type": "object",
+    "properties": {
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 100
+        },
+        "offset": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+        },
+        "prefix": {
+            "required": false,
+            "type": "string"
+        },
+        "city": {
+            "required": false,
+            "type": "string"
+        },
+        "state": {
+            "required": false,
+            "type": "string"
+        },
+        "zipcode": {
+            "required": false,
+            "type": "string"
+        },
+        "fields": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

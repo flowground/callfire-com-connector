@@ -1,0 +1,394 @@
+{
+    "type": "object",
+    "properties": {
+        "start": {
+            "required": false,
+            "type": "boolean"
+        },
+        "strictValidation": {
+            "required": false,
+            "type": "boolean"
+        },
+        "requestBody": {
+            "description": "Call broadcast can be used to send out a voice message to a group of numbers. It supports IVR scripting, scheduling, retry logic, playing pre-recorded sounds, answering machine detection",
+            "properties": {
+                "answeringMachineConfig": {
+                    "description": "Specifies which action should be taken if answering machine was detected, default value: AM_AND_LIVE. Available values: AM_ONLY - run AMD (Answering Machine Detection), hang up if LA (Live Answer); AM_AND_LIVE - run AMD, play separate live vs. machine sound; LIVE_WITH_AMD, run AMD, hang up if machine answers; LIVE_IMMEDIATE - no AMD, play live sound immediately",
+                    "enum": [
+                        "AM_ONLY",
+                        "AM_AND_LIVE",
+                        "LIVE_WITH_AMD",
+                        "LIVE_IMMEDIATE"
+                    ],
+                    "type": "string"
+                },
+                "dialplanXml": {
+                    "description": "IVR xml is a document which describes the dialplan to setup the IVR broadcast",
+                    "type": "string"
+                },
+                "fromNumber": {
+                    "description": "Phone number in E.164 format (11-digit) or short code for text. Example: 12132000384, 67076",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique id of broadcast (readonly)",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "labels": {
+                    "description": "Labels of a broadcast",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "lastModified": {
+                    "description": "The time when a given resource was updated, formatted in unix time milliseconds (read only). Example: 1473781817000 for Sat, 05 Jan 1985 14:03:37 GMT ",
+                    "format": "int64",
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "localTimeRestriction": {
+                    "description": "Specifies a range of time during which CallFire will send a call or text to recipients. Please note that range of time applies to the recipient's timezone",
+                    "properties": {
+                        "beginHour": {
+                            "description": "An hour of restriction start",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "beginMinute": {
+                            "description": "The minutes to start a restriction",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "enabled": {
+                            "description": "A restriction enabled",
+                            "type": "boolean"
+                        },
+                        "endHour": {
+                            "description": "An hour of restriction end",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "endMinute": {
+                            "description": "The minutes of restriction end",
+                            "format": "int32",
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                },
+                "maxActive": {
+                    "description": "Sets a maximum number of calls to be dialed by CallFire at once",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "maxActiveTransfers": {
+                    "description": "A maximum number of active transfers",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "A name of a broadcast",
+                    "type": "string"
+                },
+                "recipients": {
+                    "description": "Recipients of a call broadcast, can be either existing contacts or a new ones",
+                    "items": {
+                        "description": "A recipient of a campaign action. It can be a phone number, contact, or contact list with attributes added to an action, one of these values should be set",
+                        "properties": {
+                            "attributes": {
+                                "additionalProperties": {
+                                    "type": "string"
+                                },
+                                "description": "Map of user-defined string attributes associated with recipient",
+                                "type": "object"
+                            },
+                            "contactId": {
+                                "description": "An id of existing contact used as recipient",
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "fromNumber": {
+                                "description": "~",
+                                "type": "string"
+                            },
+                            "phoneNumber": {
+                                "description": "A recipient's phone number in E.164 format (11-digit) or short code. Example: 12132000384, 67076",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "resumeNextDay": {
+                    "description": "If true resumes the unfinished campaign to the next day",
+                    "type": "boolean"
+                },
+                "retryConfig": {
+                    "description": "Retry configuration allows system to retry the numbers which were not reached the first time. Designate the number of retries, the length between them, and which dispositions you want to retry",
+                    "properties": {
+                        "maxAttempts": {
+                            "description": "Maximum number of retry attempts. Default value: 1",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "minutesBetweenAttempts": {
+                            "description": "A number of minutes between retry attempts. Default value: 60",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "retryPhoneTypes": {
+                            "description": "A list of phone number types to retry. Available values: FIRST_NUMBER, HOME_PHONE, WORK_PHONE, MOBILE_PHONE",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "retryResults": {
+                            "description": "List of result states when a call/text should be addressed to this contact again. Supports any combination of result statuses. Available values: LA, BUSY, AM, NO_ANS, SENT, RECEIVED, etc. See [call/text states and results](https://developers.callfire.com/results-responses-errors.html)",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        }
+                    },
+                    "type": "object"
+                },
+                "schedules": {
+                    "description": "A list of schedule objects which specifies a range of time when broadcast should be started and stopped. Supports the scheduling per day of week",
+                    "items": {
+                        "description": "A campaign schedule",
+                        "properties": {
+                            "campaignId": {
+                                "description": "~",
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "daysOfWeek": {
+                                "description": "~",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            "id": {
+                                "description": "~",
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "startDate": {
+                                "description": "A date when campaign should be started",
+                                "properties": {
+                                    "day": {
+                                        "description": "A day of the month. Available values: 1-31",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "month": {
+                                        "description": "A month of the year. Available values: 1-12",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "year": {
+                                        "description": "A year. Example: 2020",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "startTimeOfDay": {
+                                "description": "~",
+                                "properties": {
+                                    "hour": {
+                                        "description": "An hour of the day. Available values: 0-23",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "minute": {
+                                        "description": "The minutes. Available values: 0-59",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "second": {
+                                        "description": "The seconds.  Available values: 0-59",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "stopDate": {
+                                "description": "A date when campaign should be stopped",
+                                "properties": {
+                                    "day": {
+                                        "description": "A day of the month. Available values: 1-31",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "month": {
+                                        "description": "A month of the year. Available values: 1-12",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "year": {
+                                        "description": "A year. Example: 2020",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "stopTimeOfDay": {
+                                "description": "~",
+                                "properties": {
+                                    "hour": {
+                                        "description": "An hour of the day. Available values: 0-23",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "minute": {
+                                        "description": "The minutes. Available values: 0-59",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "second": {
+                                        "description": "The seconds.  Available values: 0-59",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "timeZone": {
+                                "description": "~",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "sounds": {
+                    "description": "A set of sounds assigned to a voice broadcast to play depending on answering machine configuration",
+                    "properties": {
+                        "dncDigit": {
+                            "description": "Digit pressed to place contact in DNC list",
+                            "type": "string"
+                        },
+                        "dncSoundId": {
+                            "description": "An id of sound file to play when recipient decided to opt out and pressed DNC digit",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "dncSoundText": {
+                            "description": "Text to be turned into sound, plays to notify that Do Not Call digit has been pressed and inform your contact of their placement on the Do Not Call list",
+                            "type": "string"
+                        },
+                        "dncSoundTextVoice": {
+                            "description": "The voice to be used (MALE1, FEMALE1, FEMALE2, SPANISH1, FRENCHCANADIAN1)",
+                            "enum": [
+                                "MALE1",
+                                "FEMALE1",
+                                "FEMALE2",
+                                "SPANISH1",
+                                "FRENCHCANADIAN1"
+                            ],
+                            "type": "string"
+                        },
+                        "liveSoundId": {
+                            "description": "An id of sound file to play if phone is answered",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "liveSoundText": {
+                            "description": "Text to be used to turned into a sound. This text will be played when the phone is answered",
+                            "type": "string"
+                        },
+                        "liveSoundTextVoice": {
+                            "description": "The voice to be used (MALE1, FEMALE1, FEMALE2, SPANISH1, FRENCHCANADIAN1) for a live sound",
+                            "enum": [
+                                "MALE1",
+                                "FEMALE1",
+                                "FEMALE2",
+                                "SPANISH1",
+                                "FRENCHCANADIAN1"
+                            ],
+                            "type": "string"
+                        },
+                        "machineSoundId": {
+                            "description": "An id of a sound file to play if answering machine is detected",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "machineSoundText": {
+                            "description": "Text to be turned into a sound. This text will be played when answering machine is detected",
+                            "type": "string"
+                        },
+                        "machineSoundTextVoice": {
+                            "description": "The voice to be used (MALE1, FEMALE1 , FEMALE2, SPANISH1, FRENCHCANADIAN1) for a machine sound",
+                            "enum": [
+                                "MALE1",
+                                "FEMALE1",
+                                "FEMALE2",
+                                "SPANISH1",
+                                "FRENCHCANADIAN1"
+                            ],
+                            "type": "string"
+                        },
+                        "transferDigit": {
+                            "description": "Digit pressed to initiate a transfer",
+                            "type": "string"
+                        },
+                        "transferNumber": {
+                            "description": "Phone number in E.164 format (11-digit) to transfer call to.  Example: 12132000384, 67076",
+                            "type": "string"
+                        },
+                        "transferSoundId": {
+                            "description": "An id of a file to play if call is transferred",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "transferSoundText": {
+                            "description": "Text to be turned into a sound. This text will be played when the transfer digit is played",
+                            "type": "string"
+                        },
+                        "transferSoundTextVoice": {
+                            "description": "The voice to be used (MALE1, FEMALE1, FEMALE2, SPANISH1, FRENCHCANADIAN1) for a sound transfer",
+                            "enum": [
+                                "MALE1",
+                                "FEMALE1",
+                                "FEMALE2",
+                                "SPANISH1",
+                                "FRENCHCANADIAN1"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "status": {
+                    "description": "A status of a broadcast (read only). SETUP - campaign isn't configured yet; START_PENDING - waiting for contact batch population; RUNNING - campaign is running; STOPPED - campaign is stopped; FINISHED - campaign is finished; ARCHIVED - campaign was archived",
+                    "enum": [
+                        "TEST",
+                        "SETUP",
+                        "START_PENDING",
+                        "RUNNING",
+                        "SCHEDULED",
+                        "STOPPED",
+                        "SUSPENDED",
+                        "FINISHED",
+                        "ARCHIVED",
+                        "VALIDATING_START",
+                        "VALIDATING_EMAIL"
+                    ],
+                    "readOnly": true,
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

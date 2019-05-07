@@ -1,0 +1,17 @@
+{
+    "type": "object",
+    "properties": {
+        "toNumber": {
+            "required": true,
+            "type": "string"
+        },
+        "fromNumber": {
+            "required": false,
+            "type": "string"
+        },
+        "fields": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

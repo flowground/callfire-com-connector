@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "A name of a contact list",
+                    "type": "string"
+                },
+                "useCustomFields": {
+                    "description": "A flag to indicate how to define property names for contacts. If true, uses the field and property names exactly as defined. If false will assign custom properties and fields to A, B, C, etc",
+                    "type": "boolean"
+                }
+            }
+        }
+    }
+}

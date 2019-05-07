@@ -1,0 +1,63 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "requestBody": {
+            "description": "A batch represents a group of contacts which can be dialed or texted via call/text broadcast",
+            "properties": {
+                "broadcastId": {
+                    "description": "An id of broadcast which batch belongs to",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "created": {
+                    "description": "A date and time when batch was created, formatted in unix time milliseconds. Example: 1473781817000 for Sat, 05 Jan 1985 14:03:37 GMT",
+                    "format": "int64",
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "enabled": {
+                    "description": "An enabled batch. If batch is disabled its contacts remain undialed/untexted",
+                    "type": "boolean"
+                },
+                "id": {
+                    "description": "A id of a batch",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "name": {
+                    "description": "A batch name",
+                    "type": "string"
+                },
+                "remaining": {
+                    "description": "A number of contacts remaining undialed/untexted",
+                    "format": "int32",
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "size": {
+                    "description": "A total number of contacts in batch",
+                    "format": "int32",
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "status": {
+                    "description": "A status of batch (NEW, VALIDATING, ERRORS, SOURCE_ERROR, ACTIVE). NEW - batch is queued for validation; VALIDATING - batch is currently validating; ERRORS - batch is processed, some validation errors occurred; SOURCE_ERROR - if contact source is contact list in CallFire system and it has an error; ACTIVE - batch is processed and ready",
+                    "enum": [
+                        "NEW",
+                        "VALIDATING",
+                        "ERRORS",
+                        "SOURCE_ERROR",
+                        "ACTIVE"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

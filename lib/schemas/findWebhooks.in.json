@@ -1,0 +1,41 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 1000
+        },
+        "offset": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+        },
+        "name": {
+            "required": false,
+            "type": "string"
+        },
+        "resource": {
+            "required": false,
+            "type": "string"
+        },
+        "event": {
+            "required": false,
+            "type": "string"
+        },
+        "callback": {
+            "required": false,
+            "type": "string"
+        },
+        "enabled": {
+            "required": false,
+            "type": "boolean"
+        }
+    }
+}

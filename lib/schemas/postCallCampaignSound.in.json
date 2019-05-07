@@ -1,0 +1,23 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Request object is used for creating sound via a phone call. This sound will appear in account's sound library",
+            "properties": {
+                "name": {
+                    "description": "Name of a sound to create",
+                    "type": "string"
+                },
+                "toNumber": {
+                    "description": "Phone number in E.164 11-digit format to call to record a sound.  Example: 12132000384",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

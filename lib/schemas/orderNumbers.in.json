@@ -1,0 +1,44 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Request object is used to order a local or toll-free numbers",
+            "properties": {
+                "city": {
+                    "description": "City of requested numbers",
+                    "type": "string"
+                },
+                "localCount": {
+                    "description": "Total count of local numbers requested",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "numbers": {
+                    "description": "A list of phone numbers in E.164 format (11-digit) to buy. Example: 12132000384",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "prefix": {
+                    "description": "Country prefix of requested numbers",
+                    "type": "string"
+                },
+                "state": {
+                    "description": "A two-letter state code of requested numbers",
+                    "type": "string"
+                },
+                "tollFreeCount": {
+                    "description": "Total count of toll-free numbers requested",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "zipcode": {
+                    "description": "A five-digit Zip code of requested numbers",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

@@ -1,0 +1,18 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "Optional name of a sound file, if the name is empty than it will be taken from a file",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

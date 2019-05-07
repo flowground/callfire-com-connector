@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "name": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

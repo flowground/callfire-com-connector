@@ -1,0 +1,9 @@
+{
+    "type": "object",
+    "properties": {
+        "callerid": {
+            "required": true,
+            "type": "string"
+        }
+    }
+}

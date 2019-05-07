@@ -1,0 +1,109 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "requestBody": {
+            "description": "Request object for adding new contacts to an existing contact list",
+            "properties": {
+                "contactIds": {
+                    "description": "A list of ids of existing contacts in CallFire system",
+                    "items": {
+                        "format": "int64",
+                        "type": "integer"
+                    },
+                    "type": "array"
+                },
+                "contactNumbers": {
+                    "description": "A phone number in E.164 format (11-digit). Examples: 12132000384",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "contactNumbersField": {
+                    "description": "A type of phone number (homePhone, workPhone, mobilePhone). This parameter works together with contactNumbers and specifies which types of numbers are included to a list",
+                    "type": "string"
+                },
+                "contacts": {
+                    "description": "A list of new contact objects which need to be added",
+                    "items": {
+                        "description": "Represents a contact in CallFire platform. Contains info about the people you want to contact. It allows you to store a user-defined properties for each contact",
+                        "properties": {
+                            "deleted": {
+                                "description": "A deleted contact, deleted contacts are hidden from search results",
+                                "type": "boolean"
+                            },
+                            "externalId": {
+                                "description": "An external id of a contact for syncing with external sources",
+                                "type": "string"
+                            },
+                            "externalSystem": {
+                                "description": "External system that external id refers to",
+                                "type": "string"
+                            },
+                            "extraPhone1": {
+                                "description": "Phone number in E.164 format (11-digit). Example: 12132000384",
+                                "type": "string"
+                            },
+                            "extraPhone2": {
+                                "description": "Phone number in E.164 format (11-digit). Example: 12132000384",
+                                "type": "string"
+                            },
+                            "extraPhone3": {
+                                "description": "Phone number in E.164 format (11-digit). Example: 12132000384",
+                                "type": "string"
+                            },
+                            "firstName": {
+                                "description": "A first name of a contact",
+                                "type": "string"
+                            },
+                            "homePhone": {
+                                "description": "Phone number in E.164 format (11-digit). Example: 12132000384",
+                                "type": "string"
+                            },
+                            "id": {
+                                "description": "An id of a contact",
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "lastName": {
+                                "description": "A last name of a contact",
+                                "type": "string"
+                            },
+                            "mobilePhone": {
+                                "description": "Phone number in E.164 format (11-digit). Example: 12132000384",
+                                "type": "string"
+                            },
+                            "properties": {
+                                "additionalProperties": {
+                                    "type": "string"
+                                },
+                                "description": "Map of user-defined string properties for contact",
+                                "type": "object"
+                            },
+                            "workPhone": {
+                                "description": "Phone number in E.164 format (11-digit). Example: 12132000384",
+                                "type": "string"
+                            },
+                            "zipcode": {
+                                "description": "A Zip code of a contact",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "useCustomFields": {
+                    "description": "A flag to indicate how to define property names for contacts. If true, uses the field and property names exactly as defined. If false will assign custom properties and fields to A, B, C, etc",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

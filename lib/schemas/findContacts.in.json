@@ -1,0 +1,49 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 100
+        },
+        "offset": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+        },
+        "id": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "format": "int64",
+                "type": "integer"
+            }
+        },
+        "number": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        },
+        "contactListId": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "propertyName": {
+            "required": false,
+            "type": "string"
+        },
+        "propertyValue": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

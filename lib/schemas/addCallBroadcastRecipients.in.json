@@ -1,0 +1,47 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "strictValidation": {
+            "required": false,
+            "type": "boolean"
+        },
+        "requestBody": {
+            "items": {
+                "description": "A recipient of a campaign action. It can be a phone number, contact, or contact list with attributes added to an action, one of these values should be set",
+                "properties": {
+                    "attributes": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "Map of user-defined string attributes associated with recipient",
+                        "type": "object"
+                    },
+                    "contactId": {
+                        "description": "An id of existing contact used as recipient",
+                        "format": "int64",
+                        "type": "integer"
+                    },
+                    "fromNumber": {
+                        "description": "~",
+                        "type": "string"
+                    },
+                    "phoneNumber": {
+                        "description": "A recipient's phone number in E.164 format (11-digit) or short code. Example: 12132000384, 67076",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "type": "array"
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{
+    "type": "object",
+    "properties": {
+        "pattern": {
+            "required": false,
+            "type": "string"
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 100
+        },
+        "fields": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

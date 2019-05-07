@@ -1,0 +1,159 @@
+{
+    "type": "object",
+    "properties": {
+        "number": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents the configuration of a phone number purchased by user. You can configure number to accept inbound calls, play sounds to customer, make a transfer or setup an IVR script to interact with customer. See [CallFire IVR](https://www.callfire.com/products/ivr) for more info",
+            "properties": {
+                "callTrackingConfig": {
+                    "description": "Call tracking configuration, must be set if configType is TRACKING",
+                    "properties": {
+                        "failedTransferSoundId": {
+                            "description": "An id of sound file, played if caller can not be connected to transfer number for any reason",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "googleAnalytics": {
+                            "description": "Adds Google Analytics to track and analyze the phone call activity",
+                            "properties": {
+                                "category": {
+                                    "description": "A category to group. For example: Sales or Support",
+                                    "type": "string"
+                                },
+                                "domain": {
+                                    "description": "A domain name for analytics",
+                                    "type": "string"
+                                },
+                                "googleAccountId": {
+                                    "description": "An id of a Google account, example: UA-XXXXX-2X",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "introSoundId": {
+                            "description": "An id of sound file, played if call is answered",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "recorded": {
+                            "description": "Records all inbound calls",
+                            "type": "boolean"
+                        },
+                        "screen": {
+                            "description": "Screens the incoming calls",
+                            "type": "boolean"
+                        },
+                        "transferNumbers": {
+                            "description": "List of phone numbers in E.164 format (11-digit) are used for transfer. Example: 12132000384",
+                            "items": {
+                                "type": "string"
+                            },
+                            "type": "array"
+                        },
+                        "voicemail": {
+                            "description": "Enables voicemail if call is not transferred",
+                            "type": "boolean"
+                        },
+                        "voicemailSoundId": {
+                            "description": "An id of sound file, played if voicemail is enabled and a call isn't transferred",
+                            "format": "int64",
+                            "type": "integer"
+                        },
+                        "weeklySchedule": {
+                            "description": "Sets schedule when inbound calls are allowed for transfer",
+                            "properties": {
+                                "daysOfWeek": {
+                                    "description": "A scheduled days when operation will trigger",
+                                    "items": {
+                                        "type": "string"
+                                    },
+                                    "type": "array"
+                                },
+                                "startTimeOfDay": {
+                                    "description": "A time when scheduled operation starts",
+                                    "properties": {
+                                        "hour": {
+                                            "description": "An hour of the day. Available values: 0-23",
+                                            "format": "int32",
+                                            "type": "integer"
+                                        },
+                                        "minute": {
+                                            "description": "The minutes. Available values: 0-59",
+                                            "format": "int32",
+                                            "type": "integer"
+                                        },
+                                        "second": {
+                                            "description": "The seconds.  Available values: 0-59",
+                                            "format": "int32",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "stopTimeOfDay": {
+                                    "description": "A time when scheduled operation stops",
+                                    "properties": {
+                                        "hour": {
+                                            "description": "An hour of the day. Available values: 0-23",
+                                            "format": "int32",
+                                            "type": "integer"
+                                        },
+                                        "minute": {
+                                            "description": "The minutes. Available values: 0-59",
+                                            "format": "int32",
+                                            "type": "integer"
+                                        },
+                                        "second": {
+                                            "description": "The seconds.  Available values: 0-59",
+                                            "format": "int32",
+                                            "type": "integer"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "timeZone": {
+                                    "description": "A user's timezone",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "whisperSoundId": {
+                            "description": "An id of sound file, played if call is screened",
+                            "format": "int64",
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                },
+                "configType": {
+                    "description": "A type of config. Available values: TRACKING, IVR",
+                    "enum": [
+                        "IVR",
+                        "TRACKING"
+                    ],
+                    "type": "string"
+                },
+                "ivrInboundConfig": {
+                    "description": "IVR configuration, must be set if configType is IVR",
+                    "properties": {
+                        "dialplanXml": {
+                            "description": "~",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "number": {
+                    "description": "Phone number in E.164 format (11-digit). Example: 12132000384",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

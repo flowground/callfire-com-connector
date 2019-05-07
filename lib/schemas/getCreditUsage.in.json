@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "intervalBegin": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "intervalEnd": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        }
+    }
+}

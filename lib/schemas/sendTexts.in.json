@@ -1,0 +1,97 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "campaignId": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "defaultMessage": {
+            "required": false,
+            "type": "string"
+        },
+        "strictValidation": {
+            "required": false,
+            "type": "boolean"
+        },
+        "requestBody": {
+            "items": {
+                "description": "A recipient of a text message. You should provide either phone number or contact id of existing contact",
+                "properties": {
+                    "attributes": {
+                        "additionalProperties": {
+                            "type": "string"
+                        },
+                        "description": "A map of string attributes associated with a recipient",
+                        "type": "object"
+                    },
+                    "contactId": {
+                        "description": "An id of existing contact in account",
+                        "format": "int64",
+                        "type": "integer"
+                    },
+                    "fromNumber": {
+                        "description": "~",
+                        "type": "string"
+                    },
+                    "media": {
+                        "description": "A list of media objects' ids associated with a text message",
+                        "items": {
+                            "description": "Represents a media file which can be added to a text message",
+                            "properties": {
+                                "accountId": {
+                                    "description": "~",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "created": {
+                                    "description": "The time when the given resource was created, formatted in unix time milliseconds (read only). Example: 1473781817000 ",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "id": {
+                                    "description": "An id of a media file",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "lengthInBytes": {
+                                    "description": "A size of a media file in bytes",
+                                    "format": "int64",
+                                    "type": "integer"
+                                },
+                                "mediaType": {
+                                    "description": "A MIME type of media file, ex: image/jpeg, image/png, video/mp4, audio/mp3, etc",
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "description": "A name of a media file",
+                                    "type": "string"
+                                },
+                                "publicUrl": {
+                                    "description": "A public URL of a media file",
+                                    "type": "string"
+                                }
+                            },
+                            "type": "object"
+                        },
+                        "type": "array"
+                    },
+                    "message": {
+                        "description": "A text message",
+                        "type": "string"
+                    },
+                    "phoneNumber": {
+                        "description": "Phone number in E.164 format (11-digit) or short code. Example: 12132000384, 67076",
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "type": "array"
+        }
+    }
+}

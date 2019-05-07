@@ -1,0 +1,47 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 10
+        },
+        "offset": {
+            "required": false,
+            "type": "integer",
+            "format": "int64",
+            "default": 0
+        },
+        "label": {
+            "required": false,
+            "type": "string"
+        },
+        "name": {
+            "required": false,
+            "type": "string"
+        },
+        "running": {
+            "required": false,
+            "type": "boolean"
+        },
+        "scheduled": {
+            "required": false,
+            "type": "boolean"
+        },
+        "intervalBegin": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "intervalEnd": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        }
+    }
+}

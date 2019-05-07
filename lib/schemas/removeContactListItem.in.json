@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "contactId": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        }
+    }
+}

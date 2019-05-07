@@ -1,0 +1,1980 @@
+{
+    "title": "CallFire",
+    "description": "CallFire",
+    "docsUrl": "",
+    "url": "https://api.apis.guru/v2/specs/callfire.com/V2/swagger.json",
+    "envVars": {},
+    "credentials": {
+        "fields": {
+            "server": {
+                "label": "Server",
+                "viewClass": "SelectView",
+                "model": [
+                    "https://www.callfire.com/v2",
+                    "--- Custom URL"
+                ],
+                "required": true
+            },
+            "otherServer": {
+                "label": "Custom Server URL",
+                "viewClass": "TextFieldView"
+            },
+            "username": {
+                "label": "Username (basicAuth)",
+                "viewClass": "TextFieldView"
+            },
+            "password": {
+                "label": "Password (basicAuth)",
+                "viewClass": "TextFieldView"
+            }
+        }
+    },
+    "triggers": {
+        "startFlow": {
+            "main": "./lib/triggers/startFlow.js",
+            "type": "polling",
+            "title": "Start Flow",
+            "fields": {}
+        }
+    },
+    "actions": {
+        "findCalls": {
+            "main": "./lib/actions/findCalls.js",
+            "title": "Find calls",
+            "description": "To search for all calls sent or received by the user. Use \"id=0\" for the campaignId parameter to query for all calls sent through the POST /calls API. See [call states and results](https://developers.callfire.com/results-responses-errors.html)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findCalls.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "sendCalls": {
+            "main": "./lib/actions/sendCalls.js",
+            "title": "Send calls",
+            "description": "Use the /calls API to send individual calls quickly. A verified Caller ID and sufficient credits are required to make a call. CallRecipient represents a single recipient identified by phone number or contact id in CallFire system. You can attach user-defined attributes to a Call action via CallRecipient.attributes property, attributes are available in Call action response",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/sendCalls.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findCallBroadcasts": {
+            "main": "./lib/actions/findCallBroadcasts.js",
+            "title": "Find call broadcasts",
+            "description": "Searches for all voice broadcasts created by user. Can query on label, name, and the current running status of the campaign. Returns a paged list of voice broadcasts",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findCallBroadcasts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createCallBroadcast": {
+            "main": "./lib/actions/createCallBroadcast.js",
+            "title": "Create a call broadcast",
+            "description": "Creates a call broadcast campaign using the Call Broadcast API. Send a CallBroadcast in the message body to add details in a voice broadcast campaign. The campaign can be created without contacts and bare minimum configuration, but contacts will have to be added further on to use the campaign",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createCallBroadcast.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCallBroadcast": {
+            "main": "./lib/actions/getCallBroadcast.js",
+            "title": "Find a specific call broadcast",
+            "description": "Returns a single CallBroadcast instance for a given call broadcast campaign id",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCallBroadcast.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateCallBroadcast": {
+            "main": "./lib/actions/updateCallBroadcast.js",
+            "title": "Update a call broadcast",
+            "description": "This operation lets the user modify the configuration of a voice broadcast campaign after call broadcast campaign is created. See CallBroadcast for more information on what can/can't be updated on this API",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateCallBroadcast.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "archiveVoiceBroadcast": {
+            "main": "./lib/actions/archiveVoiceBroadcast.js",
+            "title": "Archive voice broadcast",
+            "description": "Archives a voice broadcast (voice broadcast will be hidden in search results)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/archiveVoiceBroadcast.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCallBroadcastBatches": {
+            "main": "./lib/actions/getCallBroadcastBatches.js",
+            "title": "Find batches in a call broadcast",
+            "description": "This endpoint will enable the user to page through all of the batches for a particular voice broadcast campaign",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCallBroadcastBatches.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addCallBroadcastBatch": {
+            "main": "./lib/actions/addCallBroadcastBatch.js",
+            "title": "Add batches to a call broadcast",
+            "description": "The 'add batch' API allows user to add additional batches to an already created voice broadcast campaign. The added batch will go through the CallFire validation process, unlike in the recipients version of this API. That is why you can use the scrubDuplicates flag to remove duplicates from your batch. Batches may be added as a contact list id, a list of contact ids, or a list of numbers",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addCallBroadcastBatch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCallBroadcastCalls": {
+            "main": "./lib/actions/getCallBroadcastCalls.js",
+            "title": "Find calls in a call broadcast",
+            "description": "This endpoint will enable the user to page through all calls for a particular call broadcast campaign",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCallBroadcastCalls.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addCallBroadcastRecipients": {
+            "main": "./lib/actions/addCallBroadcastRecipients.js",
+            "title": "Add recipients to a call broadcast",
+            "description": "Use this API to add the recipients to an existing voice broadcast. Post a list of Recipient objects to be added to the voice broadcast campaign. These contacts will not go through validation process, and will be acted upon as they are added. Recipients may be added as a list of contact ids, or list of numbers",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addCallBroadcastRecipients.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "startVoiceBroadcast": {
+            "main": "./lib/actions/startVoiceBroadcast.js",
+            "title": "Start voice broadcast",
+            "description": "Start a voice broadcast",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/startVoiceBroadcast.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCallBroadcastStats": {
+            "main": "./lib/actions/getCallBroadcastStats.js",
+            "title": "Get statistics on call broadcast",
+            "description": "Returns broadcast statistics like total number of sent/received actions, total cost, number of remaining outbound actions, error count, etc",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCallBroadcastStats.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "stopVoiceBroadcast": {
+            "main": "./lib/actions/stopVoiceBroadcast.js",
+            "title": "Stop voice broadcast",
+            "description": "Stop a voice broadcast",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/stopVoiceBroadcast.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCallRecording": {
+            "main": "./lib/actions/getCallRecording.js",
+            "title": "Get call recording by id",
+            "description": "Returns metadata of recording of a particular call. Metadata contains a link to a MP3 recording",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCallRecording.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCallRecordingMp3": {
+            "main": "./lib/actions/getCallRecordingMp3.js",
+            "title": "Get call recording in mp3 format",
+            "description": "Returns an MP3 recording of particular call, response contains binary data, content type is 'audio/mpeg'",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCallRecordingMp3.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCall": {
+            "main": "./lib/actions/getCall.js",
+            "title": "Find a specific call",
+            "description": "Returns a single Call instance for a given call id.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCall.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCallRecordings": {
+            "main": "./lib/actions/getCallRecordings.js",
+            "title": "Get call recordings for a call",
+            "description": "Returns a list of recordings metadata of particular call. Metadata contains link to a MP3 recording",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCallRecordings.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCallRecordingByName": {
+            "main": "./lib/actions/getCallRecordingByName.js",
+            "title": "Get call recording by name",
+            "description": "Returns recording metadata of particular call. Metadata contains link to a MP3 recording",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCallRecordingByName.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCallRecordingMp3ByName": {
+            "main": "./lib/actions/getCallRecordingMp3ByName.js",
+            "title": "Get call mp3 recording by name",
+            "description": "Returns a MP3 recording of a particular call, response contains binary data, content type is 'audio/mpeg'",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCallRecordingMp3ByName.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCampaignBatch": {
+            "main": "./lib/actions/getCampaignBatch.js",
+            "title": "Find a specific batch",
+            "description": "Returns a single Batch instance for a given batch id. This API is useful for determining the state of a validating batch",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCampaignBatch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateCampaignBatch": {
+            "main": "./lib/actions/updateCampaignBatch.js",
+            "title": "Update a batch",
+            "description": "Updates a single Batch instance, currently batch can only be turned \"on/off\"",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateCampaignBatch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findCampaignSounds": {
+            "main": "./lib/actions/findCampaignSounds.js",
+            "title": "Find sounds",
+            "description": "To find all campaign sounds which were created by user. Returns all sounds available to be used in campaigns",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findCampaignSounds.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "postCallCampaignSound": {
+            "main": "./lib/actions/postCallCampaignSound.js",
+            "title": "Add sound via call",
+            "description": "Use this API to create a sound via a phone call. Provide the required phone number in the CallCreateSound object inside the request, and user will receive a call shortly after with instructions on how to record a sound over the phone.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/postCallCampaignSound.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "postFileCampaignSound": {
+            "main": "./lib/actions/postFileCampaignSound.js",
+            "title": "Add sound via file",
+            "description": "Create a campaign sound file via a supplied .mp3 or .wav file",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/postFileCampaignSound.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "postTTSCampaignSound": {
+            "main": "./lib/actions/postTTSCampaignSound.js",
+            "title": "Add sound via text-to-speech",
+            "description": "Use this API to create a sound file via a supplied string of text. Add a text in the TextToSpeech.message field, and pick a voice in the TextToSpeech.voice field. Available voices are: MALE1, FEMALE1, FEMALE2, SPANISH1, FRENCHCANADIAN1",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/postTTSCampaignSound.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteCampaignSound": {
+            "main": "./lib/actions/deleteCampaignSound.js",
+            "title": "Delete a specific sound",
+            "description": "Deletes a single campaign sound instance for a specific campaign sound id, this operation does not delete sound completely, it sets sound status to ARCHIVED which means that sound will no longer appear in 'find' operation results, but still accessible via 'get' operation",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteCampaignSound.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCampaignSound": {
+            "main": "./lib/actions/getCampaignSound.js",
+            "title": "Find a specific sound",
+            "description": "Returns a single CampaignSound instance for a given sound id in campaign. This is a meta data to the sounds. No audio data is returned from this API",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCampaignSound.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCampaignSoundDataMp3": {
+            "main": "./lib/actions/getCampaignSoundDataMp3.js",
+            "title": "Download a MP3 sound",
+            "description": "Download the MP3 version of a hosted file. This is an audio data endpoint. Returns binary response of the 'audio/mpeg' content type",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCampaignSoundDataMp3.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCampaignSoundDataWav": {
+            "main": "./lib/actions/getCampaignSoundDataWav.js",
+            "title": "Download a WAV sound",
+            "description": "Download the WAV version of the hosted file. This is an audio data endpoint. Returns binary response of the 'audio/mpeg' content type",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCampaignSoundDataWav.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findContacts": {
+            "main": "./lib/actions/findContacts.js",
+            "title": "Find contacts",
+            "description": "Find user's contacts by id, contact list, or on any property name. Returns a paged list of contacts",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findContacts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createContacts": {
+            "main": "./lib/actions/createContacts.js",
+            "title": "Create contacts",
+            "description": "Creates contacts in CallFire system. See [contacts validation rules](https://www.callfire.com/help/docs/getting-started/managing-contacts/validating-contacts#section1)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createContacts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findDoNotContacts": {
+            "main": "./lib/actions/findDoNotContacts.js",
+            "title": "Find do not contact (dnc) items",
+            "description": "Searches for all Do Not Contact (DNC) objects created by user. These DoNotContact entries only affect calls/texts/campaigns on this account. Returns a paged list of DoNotContact objects",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findDoNotContacts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addDoNotContacts": {
+            "main": "./lib/actions/addDoNotContacts.js",
+            "title": "Add do not contact (dnc) numbers",
+            "description": "Add or update a list of Do Not Contact (DNC) contact entries. Can toggle whether the DNCs are enabled for calls/texts.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addDoNotContacts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteDoNotContactsBySource": {
+            "main": "./lib/actions/deleteDoNotContactsBySource.js",
+            "title": "Delete do not contact (dnc) numbers contained in source.",
+            "description": "Delete Do Not Contact (DNC) contact entries contained in source.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteDoNotContactsBySource.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getUniversalDoNotContacts": {
+            "main": "./lib/actions/getUniversalDoNotContacts.js",
+            "title": "Find universal do not contacts (udnc) associated with toNumber",
+            "description": "Searches for a UniversalDoNotContact object for a given phone number. Shows whether inbound/outbound actions are allowed for a given number",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getUniversalDoNotContacts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteDoNotContact": {
+            "main": "./lib/actions/deleteDoNotContact.js",
+            "title": "Delete do not contact (dnc) number. If number contains commas treat as list of numbers",
+            "description": "Delete a Do Not Contact (DNC) contact entry.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteDoNotContact.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getDoNotContact": {
+            "main": "./lib/actions/getDoNotContact.js",
+            "title": "Get do not contact (dnc)",
+            "description": "Get Do Not Contact (DNC) object create by user. This DoNotContact entry only affects calls/texts/campaigns on this account.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getDoNotContact.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateDoNotContact": {
+            "main": "./lib/actions/updateDoNotContact.js",
+            "title": "Update an individual do not contact (dnc) number",
+            "description": "Update a Do Not Contact (DNC) contact entry. Can toggle whether the DNC is enabled for calls/texts.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateDoNotContact.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findContactLists": {
+            "main": "./lib/actions/findContactLists.js",
+            "title": "Find contact lists",
+            "description": "Searches for all contact lists which are available for the current user. Returns a paged list of contact lists",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findContactLists.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createContactList": {
+            "main": "./lib/actions/createContactList.js",
+            "title": "Create contact lists",
+            "description": "Creates a contact list for use with campaigns using 1 of 3 inputs. A List of Contact objects, a list of String E.164 numbers, or a list of CallFire contactIds can be used as the data source for the created contact list. After contact list is added into the CallFire system, contact lists goes through seven system safeguards that check the accuracy and consistency of the data. For example, our system checks that contact number is formatted correctly, is valid, is not duplicated in another contact list, or is not added on a specific DNC list. You can configure to keep/merge or remove contacts which do not complies these rules. If contacts were not added to a contact list after the validation, this means the data needs to be properly formatted and corrected before calling this API",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createContactList.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createContactListFromFile": {
+            "main": "./lib/actions/createContactListFromFile.js",
+            "title": "Create contact list from file",
+            "description": "Creates a contact list to be used with campaigns through uploading a .csv file. Returns the id of created list",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createContactListFromFile.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteContactList": {
+            "main": "./lib/actions/deleteContactList.js",
+            "title": "Delete a contact list",
+            "description": "Deletes a contact list, included contacts will not be deleted.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteContactList.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getContactList": {
+            "main": "./lib/actions/getContactList.js",
+            "title": "Find a specific contact list",
+            "description": "Returns a single ContactList instance for a given contact list id",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getContactList.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateContactList": {
+            "main": "./lib/actions/updateContactList.js",
+            "title": "Update a contact list",
+            "description": "Updates contact list instance.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateContactList.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "removeContactListItems": {
+            "main": "./lib/actions/removeContactListItems.js",
+            "title": "Delete contacts from a contact list",
+            "description": "Deletes contacts from a contact list. List the contact ids in request to delete multiple contacts with one request.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/removeContactListItems.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getContactListItems": {
+            "main": "./lib/actions/getContactListItems.js",
+            "title": "Find contacts in a contact list",
+            "description": "Searches for all entries in a contact list with specified id. Returns a paged list of contact entries",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getContactListItems.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addContactListItems": {
+            "main": "./lib/actions/addContactListItems.js",
+            "title": "Add contacts to a contact list",
+            "description": "Adds contacts to a contact list. Available contact sources are: list of the contact entities, list of ids of existing contacts in user's account, list of phone numbers in E.164 format (11-digits)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addContactListItems.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "removeContactListItem": {
+            "main": "./lib/actions/removeContactListItem.js",
+            "title": "Delete a contact from a contact list",
+            "description": "Deletes a single contact from a contact list",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/removeContactListItem.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteContact": {
+            "main": "./lib/actions/deleteContact.js",
+            "title": "Delete a contact",
+            "description": "Deletes a contact instance from account",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteContact.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getContact": {
+            "main": "./lib/actions/getContact.js",
+            "title": "Find a specific contact",
+            "description": "Returns a Contact instance for a given contact id. Deleted contacts can be still retrieved but will be marked as deleted. Deleted contacts will not be shown in search request.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getContact.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateContact": {
+            "main": "./lib/actions/updateContact.js",
+            "title": "Update a contact",
+            "description": "Updates a single contact instance with id specified. See [contact validation rules](https://www.callfire.com/help/docs/getting-started/managing-contacts/validating-contacts#section1)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateContact.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getContactHistory": {
+            "main": "./lib/actions/getContactHistory.js",
+            "title": "Find a contact's history",
+            "description": "Searches for all texts and calls attributed to a contact. Returns a list of calls and texts a contact has been involved with",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getContactHistory.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findKeywords": {
+            "main": "./lib/actions/findKeywords.js",
+            "title": "Find keywords",
+            "description": "Searches for all keywords available for purchase on the CallFire platform. If a keyword appears in the response, it is available for purchase. List the 'keywords' in a query parameter to search for multiple keywords (at least one keyword should be sent in request). Keyword should only consist of uppercase and lowercase letters and numbers. Number of characters must be greater than 2, but less than 65.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findKeywords.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findKeywordLeases": {
+            "main": "./lib/actions/findKeywordLeases.js",
+            "title": "Find keyword leases",
+            "description": "Searches for all keywords owned by user. A keyword lease is the ownership information involving a keyword",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findKeywordLeases.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getKeywordLease": {
+            "main": "./lib/actions/getKeywordLease.js",
+            "title": "Find a specific lease",
+            "description": "Searches for all keywords owned by user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getKeywordLease.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateKeywordLease": {
+            "main": "./lib/actions/updateKeywordLease.js",
+            "title": "Update a lease",
+            "description": "Updates a keyword lease. Turns the autoRenew on/off. Configure double opt in feature. Add/remove contact list from keyword.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateKeywordLease.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "isKeywordAvailable": {
+            "main": "./lib/actions/isKeywordAvailable.js",
+            "title": "Check for a specific keyword",
+            "description": "Searches for the specific keyword to purchase on the CallFire platform. Returns 'true' if keyword is available. Keyword should only consist of uppercase and lowercase letters and numbers. Number of characters must be greater than 2, but less than 65.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/isKeywordAvailable.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getAccount": {
+            "main": "./lib/actions/getAccount.js",
+            "title": "Find account details",
+            "description": "Searches for the user account details. Details include name, email, and basic account permissions. For authentication use api credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getAccount.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findApiCredentials": {
+            "main": "./lib/actions/findApiCredentials.js",
+            "title": "Find api credentials",
+            "description": "Searches for all credentials generated by user. Returns a paged list of the API credentials. Only ACCOUNT_HOLDER can invoke this API. For authentication use account credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findApiCredentials.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createApiCredential": {
+            "main": "./lib/actions/createApiCredential.js",
+            "title": "Create api credentials",
+            "description": "Creates an API credentials for the CallFire API. This endpoint requires full CallFire account credentials to be used, authenticated using Basic Authentication. At the moment user provides only the name for the credentials. The generated credentials can be used to access any CallFire APIs. For authentication use account credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createApiCredential.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteApiCredential": {
+            "main": "./lib/actions/deleteApiCredential.js",
+            "title": "Delete api credentials",
+            "description": "Deletes a specified API credential. Currently, removes the ability to access the API. Only ACCOUNT_HOLDER can invoke this API. For authentication use account credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteApiCredential.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getApiCredential": {
+            "main": "./lib/actions/getApiCredential.js",
+            "title": "Find a specific api credential",
+            "description": "Returns an API credential instance for a given api credential id. Only ACCOUNT_HOLDER can invoke this API. For authentication use account credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getApiCredential.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "disableApiCredentials": {
+            "main": "./lib/actions/disableApiCredentials.js",
+            "title": "Disable specified API credentials",
+            "description": "Disables a specified API credential. Currently, removes the ability to access the API. Only ACCOUNT_HOLDER can invoke this API. For authentication use account credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/disableApiCredentials.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "enableApiCredentials": {
+            "main": "./lib/actions/enableApiCredentials.js",
+            "title": "Enable specified API credentials",
+            "description": "Enables a specified API credential. Currently, adds the ability to access the API. Only ACCOUNT_HOLDER can invoke this API. For authentication use account credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/enableApiCredentials.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCreditUsage": {
+            "main": "./lib/actions/getCreditUsage.js",
+            "title": "Find credit usage",
+            "description": "Find credit usage for the user. Returns credits usage for time period specified or if unspecified then total for all time. For authentication use api credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCreditUsage.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getBillingPlanUsage": {
+            "main": "./lib/actions/getBillingPlanUsage.js",
+            "title": "Find plan usage",
+            "description": "Searches for the data of a billing plan usage for the user. Returns the data of a billing plan usage for the current month. For authentication use api credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getBillingPlanUsage.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getCallerIds": {
+            "main": "./lib/actions/getCallerIds.js",
+            "title": "Find caller ids",
+            "description": "Returns a list of verified caller ids. If the number is not shown in the list, then it is not verified. In this case sending of a verification code is required. For authentication use api credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getCallerIds.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "sendVerificationCodeToCallerId": {
+            "main": "./lib/actions/sendVerificationCodeToCallerId.js",
+            "title": "Create a caller id",
+            "description": "Generates and sends a verification code to the phone number provided in the path. The verification code is delivered via a phone call. This code needs to be submitted to the verify caller id API endpoint to complete verification. For authentication use api credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/sendVerificationCodeToCallerId.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "verifyCallerId": {
+            "main": "./lib/actions/verifyCallerId.js",
+            "title": "Verify a caller id",
+            "description": "With the verification code received from the Create caller id endpoint, a call to this endpoint is required to finish verification. For authentication use api credentials.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/verifyCallerId.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findMedia": {
+            "main": "./lib/actions/findMedia.js",
+            "title": "Find media",
+            "description": "Find media files created by user",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findMedia.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createMedia": {
+            "main": "./lib/actions/createMedia.js",
+            "title": "Create media",
+            "description": "Uploads media file to account, acceptable media formats: bmp, gif, jpg, m4a, mp3, mp4, png, wav",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createMedia.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getMediaDataByKey": {
+            "main": "./lib/actions/getMediaDataByKey.js",
+            "title": "Download media by extension",
+            "description": "Download a media file. Available types of files: bmp, gif, jpg, m4a, mp3, mp4, png, wav. Content type in response depends on 'extension' parameter, e.g. image/jpeg, image/png, audio/mp3, etc",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getMediaDataByKey.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getMedia": {
+            "main": "./lib/actions/getMedia.js",
+            "title": "Get a specific media",
+            "description": "Get media resource by id",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getMedia.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getMediaData": {
+            "main": "./lib/actions/getMediaData.js",
+            "title": "Download media by extension",
+            "description": "Download a media file. Available types of files: bmp, gif, jpg, m4a, mp3, mp4, png, wav. Content type in response depends on 'extension' parameter, e.g. image/jpeg, image/png, audio/mp3, etc",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getMediaData.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getMediaDataBinary": {
+            "main": "./lib/actions/getMediaDataBinary.js",
+            "title": "Download a MP3 media",
+            "description": "Download a MP3 media, endpoint returns application/binary content-type",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getMediaDataBinary.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findNumberLeases": {
+            "main": "./lib/actions/findNumberLeases.js",
+            "title": "Find leases",
+            "description": "Searches for all numbers leased by account user. This API is useful for finding all numbers currently owned by the user. Returns a paged list of number leases.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findNumberLeases.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findNumberLeaseConfigs": {
+            "main": "./lib/actions/findNumberLeaseConfigs.js",
+            "title": "Find lease configs",
+            "description": "Searches for all number lease configs for the user. Returns a paged list of NumberConfig",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findNumberLeaseConfigs.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getNumberLeaseConfig": {
+            "main": "./lib/actions/getNumberLeaseConfig.js",
+            "title": "Find a specific lease config",
+            "description": "Returns a single NumberConfig instance for a given number lease",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getNumberLeaseConfig.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateNumberLeaseConfig": {
+            "main": "./lib/actions/updateNumberLeaseConfig.js",
+            "title": "Update a lease config",
+            "description": "Updates a phone number lease configuration. Use this API endpoint to add an Inbound IVR or Call Tracking feature to a CallFire phone number. Call tracking configuration allows you to track the incoming calls, to analyze and to respond customers using sms or voice replies. For more information see [call tracking page](https://www.callfire.com/products/call-tracking)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateNumberLeaseConfig.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getNumberLease": {
+            "main": "./lib/actions/getNumberLease.js",
+            "title": "Find a specific lease",
+            "description": "Returns a single NumberLease instance for a given number",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getNumberLease.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateNumberLease": {
+            "main": "./lib/actions/updateNumberLease.js",
+            "title": "Update a lease",
+            "description": "Updates a number lease instance. Ability to turn on/off autoRenew and toggle call/text features for a particular number",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateNumberLease.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findNumbersLocal": {
+            "main": "./lib/actions/findNumbersLocal.js",
+            "title": "Find local numbers",
+            "description": "Searches for numbers available for purchase in CallFire local numbers catalog . At least one additional parameter is required. User may filter local numbers by their region information. If all numbers with desirable zip code is already busy search will return available numbers with nearest zip code.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findNumbersLocal.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findNumberRegions": {
+            "main": "./lib/actions/findNumberRegions.js",
+            "title": "Find number regions",
+            "description": "Searches for region information. Use this API to obtain detailed region information that can be used to query for more specific phone numbers than a general query.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findNumberRegions.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findNumbersTollfree": {
+            "main": "./lib/actions/findNumbersTollfree.js",
+            "title": "Find tollfree numbers",
+            "description": "Searches for the toll free numbers which are available for purchase in the CallFire catalog",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findNumbersTollfree.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "orderKeywords": {
+            "main": "./lib/actions/orderKeywords.js",
+            "title": "Purchase keywords",
+            "description": "Purchase keywords. Send a list of available keywords into this API to purchase them using CallFire credits. Make sure the account has enough credits before trying to purchase the keywords. Keyword should only consist of uppercase and lowercase letters and numbers. Number of characters must be greater than 2, but less than 65.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/orderKeywords.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "orderNumbers": {
+            "main": "./lib/actions/orderNumbers.js",
+            "title": "Purchase numbers",
+            "description": "Purchase numbers. There are many ways to purchase a number. Set either 'tollFreeCount' or 'localCount' along with some querying fields to purchase numbers by bulk query. Set the list of numbers to purchase by list. Available numbers will be purchased using CallFire credits owned by the user. Make sure the account has enough credits before trying to purchase",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/orderNumbers.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getOrder": {
+            "main": "./lib/actions/getOrder.js",
+            "title": "Find a specific order",
+            "description": "Returns a single NumberOrder instance for a given order id. Order contains information about purchased keywords, local, toll-free numbers",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getOrder.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findTexts": {
+            "main": "./lib/actions/findTexts.js",
+            "title": "Find texts",
+            "description": "Searches for texts sent or received by user. Use \"campaignId=0\" parameter to query for all texts sent through the POST /texts API. See [call states and results](https://developers.callfire.com/results-responses-errors.html)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findTexts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "sendTexts": {
+            "main": "./lib/actions/sendTexts.js",
+            "title": "Send texts",
+            "description": "Use the /texts API to send individual texts quickly. By default all texts are going out from CallFire's dedicated short code 67076",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/sendTexts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findTextAutoReplys": {
+            "main": "./lib/actions/findTextAutoReplys.js",
+            "title": "Find auto replies",
+            "description": "Find all text autoreplies created by user. Returns a paged list of TextAutoReply",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findTextAutoReplys.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createTextAutoReply": {
+            "main": "./lib/actions/createTextAutoReply.js",
+            "title": "Create an auto reply",
+            "description": "CallFire gives you possibility to set up auto reply messages for your numbers and keywords. You can set a general auto reply for anyone who texts your number, keyword, and/or include a text to match, so that the auto reply would be sent only to those who text the matched text",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createTextAutoReply.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteTextAutoReply": {
+            "main": "./lib/actions/deleteTextAutoReply.js",
+            "title": "Delete an auto reply",
+            "description": "Deletes a text auto reply and removes the configuration. Can not delete a TextAutoReply which is currently active for a campaign",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteTextAutoReply.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTextAutoReply": {
+            "main": "./lib/actions/getTextAutoReply.js",
+            "title": "Find a specific auto reply",
+            "description": "Returns a single TextAutoReply instance for a given text auto reply id",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTextAutoReply.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findTextBroadcasts": {
+            "main": "./lib/actions/findTextBroadcasts.js",
+            "title": "Find text broadcasts",
+            "description": "Searches for all text broadcasts created by user. Can query on label, name, and the current running status of the campaign. Returns a paged list of text broadcasts",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findTextBroadcasts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createTextBroadcast": {
+            "main": "./lib/actions/createTextBroadcast.js",
+            "title": "Create a text broadcast",
+            "description": "Creates a text broadcast campaign using the Text Broadcast API. Send a TextBroadcast object in the message body to detail a text broadcast campaign. A campaign can be created without contacts and with bare minimum configuration, but contacts have to be added further on to use the campaign. It supports scheduling, retry logic, pattern-based messages.",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createTextBroadcast.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTextBroadcast": {
+            "main": "./lib/actions/getTextBroadcast.js",
+            "title": "Find a specific text broadcast",
+            "description": "Returns a single TextBroadcast instance for a given text broadcast id",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTextBroadcast.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateTextBroadcast": {
+            "main": "./lib/actions/updateTextBroadcast.js",
+            "title": "Update a text broadcast",
+            "description": "Allows modifying the configuration of existing text broadcast campaign. See TextBroadcast for more information on what can/can't be updated on this API",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateTextBroadcast.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "archiveTextBroadcast": {
+            "main": "./lib/actions/archiveTextBroadcast.js",
+            "title": "Archive text broadcast",
+            "description": "Archives a text broadcast (and hides it in the search results)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/archiveTextBroadcast.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTextBroadcastBatches": {
+            "main": "./lib/actions/getTextBroadcastBatches.js",
+            "title": "Find batches in a text broadcast",
+            "description": "This endpoint will enable the user to page through all of the batches for a particular text broadcast campaign",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTextBroadcastBatches.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addTextBroadcastBatch": {
+            "main": "./lib/actions/addTextBroadcastBatch.js",
+            "title": "Add batches to a text broadcast",
+            "description": "Allows adding an extra batches to an already created text broadcast campaign. The batches which being  added pass the CallFire validation process (unlike in the recipients version of this API). That is why using of a scrubDuplicates flag remove duplicates from your batch. Batches may be added as a contact list id, a list of contact ids, or a list of numbers",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addTextBroadcastBatch.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "addTextBroadcastRecipients": {
+            "main": "./lib/actions/addTextBroadcastRecipients.js",
+            "title": "Add recipients to a text broadcast",
+            "description": "Use this API to add recipients to a text broadcast which is already created. Post a list of Recipient objects to be immediately added to the text broadcast campaign. These contacts will not go through validation process, and will be acted upon as they are added. Recipients may be added as a list of contact ids, or list of numbers",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/addTextBroadcastRecipients.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "startTextBroadcast": {
+            "main": "./lib/actions/startTextBroadcast.js",
+            "title": "Start text broadcast",
+            "description": "Starts a text broadcast",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/startTextBroadcast.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTextBroadcastStats": {
+            "main": "./lib/actions/getTextBroadcastStats.js",
+            "title": "Get statistics on text broadcast",
+            "description": "Returns the broadcast statistics. Example: total number of the sent/received actions, total cost, number of remaining outbound actions, error count, etc",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTextBroadcastStats.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "stopTextBroadcast": {
+            "main": "./lib/actions/stopTextBroadcast.js",
+            "title": "Stop text broadcast",
+            "description": "Stops a text broadcast",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/stopTextBroadcast.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getTextBroadcastTexts": {
+            "main": "./lib/actions/getTextBroadcastTexts.js",
+            "title": "Find texts in a text broadcast",
+            "description": "This endpoint will enable the user to page through all of the texts for a particular text broadcast campaign",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getTextBroadcastTexts.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getText": {
+            "main": "./lib/actions/getText.js",
+            "title": "Find a specific text",
+            "description": "Returns a single Text instance for a given text id",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getText.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findWebhooks": {
+            "main": "./lib/actions/findWebhooks.js",
+            "title": "Find webhooks",
+            "description": "Searches all webhooks available for a current user. Searches by name, resource, event, callback URL, or whether they are enabled. Returns a paged list of Webhooks",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findWebhooks.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "createWebhook": {
+            "main": "./lib/actions/createWebhook.js",
+            "title": "Create a webhook",
+            "description": "Create a Webhook for notification in the CallFire system. Use the webhooks API to receive notifications of important CallFire events. Select the resource to listen to, and then choose the resource events to receive notifications on. When an event triggers, a POST will be made to the callback URL with a payload of notification information. Available resources and their events include 'CccCampaign': ['started', 'stopped', 'finished'], 'CallBroadcast': ['started', 'stopped', 'finished'], 'TextBroadcast': ['started', 'stopped', 'finished'], 'OutboundCall': ['finished'], 'InboundCall': ['finished'], 'OutboundText': ['finished'], 'InboundText': ['finished'], 'ContactList': ['validationFinished', 'validationFailed']. Webhooks support secret token which is used as signing key to HmacSHA1 hash of json payload which is returned in 'X-CallFire-Signature' header. This header can be used to verify callback POST is coming from CallFire. See [security guide](https://developers.callfire.com/security-guide.html)",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/createWebhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "findWebhookResources": {
+            "main": "./lib/actions/findWebhookResources.js",
+            "title": "Find webhook resources",
+            "description": "Searches for webhook resources. Available resources include 'CccCampaign': ['started', 'stopped', 'finished'], 'CallBroadcast': ['started', 'stopped', 'finished'], 'TextBroadcast': ['started', 'stopped', 'finished'], 'OutboundCall': ['finished'], 'InboundCall': ['finished'], 'OutboundText': ['finished'], 'InboundText': ['finished'], 'ContactList': ['validationFinished', 'validationFailed']",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/findWebhookResources.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getWebhookResource": {
+            "main": "./lib/actions/getWebhookResource.js",
+            "title": "Find specific webhook resource",
+            "description": "Returns information about supported events for a given webhook resource",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getWebhookResource.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "deleteWebhook": {
+            "main": "./lib/actions/deleteWebhook.js",
+            "title": "Delete a webhook",
+            "description": "Deletes a webhook instance. Will be removed permanently",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/deleteWebhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "getWebhook": {
+            "main": "./lib/actions/getWebhook.js",
+            "title": "Find a specific webhook",
+            "description": "Returns a single Webhook instance for a given webhook id",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/getWebhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        },
+        "updateWebhook": {
+            "main": "./lib/actions/updateWebhook.js",
+            "title": "Update a webhook",
+            "description": "Updates the information in existing webhook",
+            "fields": {
+                "verbose": {
+                    "viewClass": "CheckBoxView",
+                    "label": "Debug this step (log more data)"
+                }
+            },
+            "metadata": {
+                "in": "./lib/schemas/updateWebhook.in.json",
+                "out": {
+                    "type": "object"
+                }
+            }
+        }
+    }
+}

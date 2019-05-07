@@ -1,0 +1,38 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "description": "Request object for adding new Do-Not-Contact records to account.",
+            "properties": {
+                "call": {
+                    "description": "If set to true add all given numbers to Do-Not-Call list. Default value: true",
+                    "type": "boolean"
+                },
+                "inboundCall": {
+                    "description": "~",
+                    "type": "boolean"
+                },
+                "inboundText": {
+                    "description": "~",
+                    "type": "boolean"
+                },
+                "numbers": {
+                    "description": "A list of phone numbers in E.164 format (11-digit), example: 12132000384, 14142777322",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "source": {
+                    "description": "A list of new contact objects which need to be added. Default value: Api V2",
+                    "type": "string"
+                },
+                "text": {
+                    "description": "If set to true add all given numbers to Do-Not-Text list. Default value: true",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

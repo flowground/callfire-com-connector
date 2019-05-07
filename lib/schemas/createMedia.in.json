@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "properties": {
+        "requestBody": {
+            "type": "object",
+            "properties": {
+                "name": {
+                    "description": "A name of a media file",
+                    "type": "string"
+                }
+            }
+        }
+    }
+}

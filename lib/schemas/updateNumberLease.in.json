@@ -1,0 +1,118 @@
+{
+    "type": "object",
+    "properties": {
+        "number": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Represents a lease object for a given phone number",
+            "properties": {
+                "autoRenew": {
+                    "description": "Enables the auto renewal of number lease at end of each billing cycle",
+                    "type": "boolean"
+                },
+                "callFeatureStatus": {
+                    "description": "A status of a call feature. Available values: DISABLED, ENABLED",
+                    "enum": [
+                        "UNSUPPORTED",
+                        "PENDING",
+                        "DISABLED",
+                        "ENABLED"
+                    ],
+                    "type": "string"
+                },
+                "labels": {
+                    "description": "~",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "leaseBegin": {
+                    "description": "A date and time of a lease start. Timestamp, formatted in unix time milliseconds (read only). Example: 1473781817000",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "leaseEnd": {
+                    "description": "A data and time of a lease finish. Timestamp, formatted in unix time milliseconds (read only). Example: 1473781817000",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "nationalFormat": {
+                    "description": "Formatted number with a country code",
+                    "type": "string"
+                },
+                "number": {
+                    "description": "A phone number in E.164 format (11-digit). Example: 12132000384",
+                    "type": "string"
+                },
+                "region": {
+                    "description": "A region object of a given number",
+                    "properties": {
+                        "city": {
+                            "description": "A city of a region",
+                            "type": "string"
+                        },
+                        "country": {
+                            "description": "A country of a region",
+                            "type": "string"
+                        },
+                        "latitude": {
+                            "description": "A latitude of a region",
+                            "format": "float",
+                            "type": "number"
+                        },
+                        "longitude": {
+                            "description": "A longitude of a region",
+                            "format": "float",
+                            "type": "number"
+                        },
+                        "prefix": {
+                            "description": "A country prefix of a region. 4-7 digit",
+                            "type": "string"
+                        },
+                        "state": {
+                            "description": "A two-letter state code of region",
+                            "type": "string"
+                        },
+                        "timeZone": {
+                            "description": "A timezone of a region",
+                            "type": "string"
+                        },
+                        "zipcode": {
+                            "description": "A five-digit zip code of a region",
+                            "type": "string"
+                        }
+                    },
+                    "type": "object"
+                },
+                "status": {
+                    "description": "A lease status. Available values: PENDING, ACTIVE, RELEASED, UNAVAILABLE",
+                    "enum": [
+                        "PENDING",
+                        "ACTIVE",
+                        "RELEASED",
+                        "UNAVAILABLE"
+                    ],
+                    "type": "string"
+                },
+                "textFeatureStatus": {
+                    "description": "A status of a text feature. Available values: DISABLED, ENABLED",
+                    "enum": [
+                        "UNSUPPORTED",
+                        "PENDING",
+                        "DISABLED",
+                        "ENABLED"
+                    ],
+                    "type": "string"
+                },
+                "tollFree": {
+                    "description": "A  toll-free number",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

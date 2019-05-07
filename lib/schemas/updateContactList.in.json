@@ -1,0 +1,20 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "requestBody": {
+            "description": "A request object which is used to update a contact list",
+            "properties": {
+                "name": {
+                    "description": "A name of a contact list",
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

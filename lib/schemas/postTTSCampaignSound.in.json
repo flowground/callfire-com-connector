@@ -1,0 +1,30 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Request object is used to create a sound from provided text using text to speech engine",
+            "properties": {
+                "message": {
+                    "description": "A text to be turned into sound",
+                    "type": "string"
+                },
+                "voice": {
+                    "description": "A voice to be used. Available values: MALE1, FEMALE1 , FEMALE2, SPANISH1, FRENCHCANADIAN1",
+                    "enum": [
+                        "MALE1",
+                        "FEMALE1",
+                        "FEMALE2",
+                        "SPANISH1",
+                        "FRENCHCANADIAN1"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}

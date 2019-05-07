@@ -1,0 +1,55 @@
+{
+    "type": "object",
+    "properties": {
+        "fields": {
+            "required": false,
+            "type": "string"
+        },
+        "limit": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "offset": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "prefix": {
+            "required": false,
+            "type": "string"
+        },
+        "campaignId": {
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+        },
+        "source": {
+            "required": false,
+            "type": "string"
+        },
+        "call": {
+            "required": false,
+            "type": "boolean"
+        },
+        "text": {
+            "required": false,
+            "type": "boolean"
+        },
+        "inboundCall": {
+            "required": false,
+            "type": "boolean"
+        },
+        "inboundText": {
+            "required": false,
+            "type": "boolean"
+        },
+        "number": {
+            "required": false,
+            "type": "array",
+            "items": {
+                "type": "string"
+            }
+        }
+    }
+}

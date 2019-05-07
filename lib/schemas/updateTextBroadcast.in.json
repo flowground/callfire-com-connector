@@ -1,0 +1,350 @@
+{
+    "type": "object",
+    "properties": {
+        "id": {
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+        },
+        "strictValidation": {
+            "required": false,
+            "type": "boolean"
+        },
+        "requestBody": {
+            "description": "A text campaign allows you to send a text message to a number of recipients. It supports scheduling, retry logic and pattern-based messages",
+            "properties": {
+                "bigMessageStrategy": {
+                    "description": "If message length exceeds 160 characters, multiple messages will be sent, SEND_MULTIPLE strategy is chosen by default. Available values: SEND_MULTIPLE - send text as multiple messages, DO_NOT_SEND - do not send text if it exceeds 160 characters, TRIM - trims text message to 160 characters",
+                    "enum": [
+                        "SEND_MULTIPLE",
+                        "DO_NOT_SEND",
+                        "TRIM",
+                        "MMS"
+                    ],
+                    "type": "string"
+                },
+                "fromNumber": {
+                    "description": "A phone number in E.164 format (11-digit) or short code. Example: 12132000384, 67076, etc",
+                    "type": "string"
+                },
+                "id": {
+                    "description": "A unique id of a broadcast",
+                    "format": "int64",
+                    "type": "integer"
+                },
+                "labels": {
+                    "description": "A labels of a broadcast",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "lastModified": {
+                    "description": "A time when the given resource was updated, formatted in unix time milliseconds (read only). Example: 1473781817000",
+                    "format": "int64",
+                    "readOnly": true,
+                    "type": "integer"
+                },
+                "localTimeRestriction": {
+                    "description": "Specifies a range of time when CallFire sends a text to recipients. Please note that a range of time applies to recipient's timezone",
+                    "properties": {
+                        "beginHour": {
+                            "description": "An hour of restriction start",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "beginMinute": {
+                            "description": "The minutes to start a restriction",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "enabled": {
+                            "description": "A restriction enabled",
+                            "type": "boolean"
+                        },
+                        "endHour": {
+                            "description": "An hour of restriction end",
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "endMinute": {
+                            "description": "The minutes of restriction end",
+                            "format": "int32",
+                            "type": "integer"
+                        }
+                    },
+                    "type": "object"
+                },
+                "maxActive": {
+                    "description": "A maximum number of texts that CallFire dials at once",
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "media": {
+                    "description": "~",
+                    "items": {
+                        "description": "Represents a media file which can be added to a text message",
+                        "properties": {
+                            "accountId": {
+                                "description": "~",
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "created": {
+                                "description": "The time when the given resource was created, formatted in unix time milliseconds (read only). Example: 1473781817000 ",
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "id": {
+                                "description": "An id of a media file",
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "lengthInBytes": {
+                                "description": "A size of a media file in bytes",
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "mediaType": {
+                                "description": "A MIME type of media file, ex: image/jpeg, image/png, video/mp4, audio/mp3, etc",
+                                "type": "string"
+                            },
+                            "name": {
+                                "description": "A name of a media file",
+                                "type": "string"
+                            },
+                            "publicUrl": {
+                                "description": "A public URL of a media file",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "message": {
+                    "description": "A text message",
+                    "type": "string"
+                },
+                "name": {
+                    "description": "A name of a broadcast",
+                    "type": "string"
+                },
+                "recipients": {
+                    "description": "Recipients of a text campaign, can be an existing contacts or a new one",
+                    "items": {
+                        "description": "A recipient of a text message. You should provide either phone number or contact id of existing contact",
+                        "properties": {
+                            "attributes": {
+                                "additionalProperties": {
+                                    "type": "string"
+                                },
+                                "description": "A map of string attributes associated with a recipient",
+                                "type": "object"
+                            },
+                            "contactId": {
+                                "description": "An id of existing contact in account",
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "fromNumber": {
+                                "description": "~",
+                                "type": "string"
+                            },
+                            "media": {
+                                "description": "A list of media objects' ids associated with a text message",
+                                "items": {
+                                    "description": "Represents a media file which can be added to a text message",
+                                    "properties": {
+                                        "accountId": {
+                                            "description": "~",
+                                            "format": "int64",
+                                            "type": "integer"
+                                        },
+                                        "created": {
+                                            "description": "The time when the given resource was created, formatted in unix time milliseconds (read only). Example: 1473781817000 ",
+                                            "format": "int64",
+                                            "type": "integer"
+                                        },
+                                        "id": {
+                                            "description": "An id of a media file",
+                                            "format": "int64",
+                                            "type": "integer"
+                                        },
+                                        "lengthInBytes": {
+                                            "description": "A size of a media file in bytes",
+                                            "format": "int64",
+                                            "type": "integer"
+                                        },
+                                        "mediaType": {
+                                            "description": "A MIME type of media file, ex: image/jpeg, image/png, video/mp4, audio/mp3, etc",
+                                            "type": "string"
+                                        },
+                                        "name": {
+                                            "description": "A name of a media file",
+                                            "type": "string"
+                                        },
+                                        "publicUrl": {
+                                            "description": "A public URL of a media file",
+                                            "type": "string"
+                                        }
+                                    },
+                                    "type": "object"
+                                },
+                                "type": "array"
+                            },
+                            "message": {
+                                "description": "A text message",
+                                "type": "string"
+                            },
+                            "phoneNumber": {
+                                "description": "Phone number in E.164 format (11-digit) or short code. Example: 12132000384, 67076",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "resumeNextDay": {
+                    "description": "~",
+                    "type": "boolean"
+                },
+                "schedules": {
+                    "description": "~",
+                    "items": {
+                        "description": "A campaign schedule",
+                        "properties": {
+                            "campaignId": {
+                                "description": "~",
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "daysOfWeek": {
+                                "description": "~",
+                                "items": {
+                                    "type": "string"
+                                },
+                                "type": "array"
+                            },
+                            "id": {
+                                "description": "~",
+                                "format": "int64",
+                                "type": "integer"
+                            },
+                            "startDate": {
+                                "description": "A date when campaign should be started",
+                                "properties": {
+                                    "day": {
+                                        "description": "A day of the month. Available values: 1-31",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "month": {
+                                        "description": "A month of the year. Available values: 1-12",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "year": {
+                                        "description": "A year. Example: 2020",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "startTimeOfDay": {
+                                "description": "~",
+                                "properties": {
+                                    "hour": {
+                                        "description": "An hour of the day. Available values: 0-23",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "minute": {
+                                        "description": "The minutes. Available values: 0-59",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "second": {
+                                        "description": "The seconds.  Available values: 0-59",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "stopDate": {
+                                "description": "A date when campaign should be stopped",
+                                "properties": {
+                                    "day": {
+                                        "description": "A day of the month. Available values: 1-31",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "month": {
+                                        "description": "A month of the year. Available values: 1-12",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "year": {
+                                        "description": "A year. Example: 2020",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "stopTimeOfDay": {
+                                "description": "~",
+                                "properties": {
+                                    "hour": {
+                                        "description": "An hour of the day. Available values: 0-23",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "minute": {
+                                        "description": "The minutes. Available values: 0-59",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    },
+                                    "second": {
+                                        "description": "The seconds.  Available values: 0-59",
+                                        "format": "int32",
+                                        "type": "integer"
+                                    }
+                                },
+                                "type": "object"
+                            },
+                            "timeZone": {
+                                "description": "~",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "status": {
+                    "description": "A status of a broadcast. SETUP - campaign isn't configured yet; START_PENDING - waiting for contact batch population; RUNNING - campaign is running; STOPPED - campaign is stopped; FINISHED - campaign is finished; ARCHIVED - campaign was archived",
+                    "enum": [
+                        "TEST",
+                        "SETUP",
+                        "START_PENDING",
+                        "RUNNING",
+                        "SCHEDULED",
+                        "STOPPED",
+                        "SUSPENDED",
+                        "FINISHED",
+                        "ARCHIVED",
+                        "VALIDATING_START",
+                        "VALIDATING_EMAIL"
+                    ],
+                    "readOnly": true,
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
